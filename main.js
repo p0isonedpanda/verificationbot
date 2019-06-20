@@ -22,12 +22,14 @@ client.on('message', msg => {
     } else {
       // check if the user already has the verified role
       var isVerified = false;
-      for (const role of msg.member.roles) {
-        if (role[1].name == 'Verified') {
-          isVerified = true;
-          break;
+      try {
+        for (const role of msg.member.roles) {
+          if (role[1].name == 'Verified') {
+            isVerified = true;
+            break;
+          }
         }
-      }
+      } catch { } // hacky af but i need this working now
 
       if (isVerified) { // user already has role
         msg.channel.send(
