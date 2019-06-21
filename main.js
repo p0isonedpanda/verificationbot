@@ -11,8 +11,7 @@ client.on('message', msg => {
 
   if (msg.isMentioned(client.user))
     VerifyUser(msg);
-
-  if (msg.channel.name == 'verify-me')
+  else if (msg.channel.name == 'verify-me')
     InvalidCommand(msg);
 });
 
