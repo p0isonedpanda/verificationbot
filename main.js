@@ -9,9 +9,11 @@ client.on('ready', () => {
 client.on('message', msg => {
   if (msg.author == client.user) return;
 
-  if (msg.isMentioned(client.user)) {
+  if (msg.isMentioned(client.user))
     VerifyUser(msg);
-  }
+
+  if (msg.channel.name == 'verify-me')
+    InvalidCommand(msg);
 });
 
 function VerifyUser(msg)
@@ -58,6 +60,15 @@ function VerifyUser(msg)
       );
     }
   }
+
+  msg.delete();
+}
+
+function InvalidCommand(msg) {
+  msg.channel.send(
+    '**INVALID COMMAND**\n' +
+    'Please read the rules in `#welcome` `' + msg.author.username + '` to understand how to properly verify yourself'
+  );
 
   msg.delete();
 }
